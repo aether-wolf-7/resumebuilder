@@ -37,7 +37,8 @@ RESUME RULES (brief — full rules in resume_prompt.md + resume_basic.md)
 
 - NEVER change the years of experience — always use the exact value from _profile.md (currently 10+ years)
 - Every bullet: WHAT was built → HOW it was built → BUSINESS or SYSTEM IMPACT
-- Only use technologies and experience from _profile.md — never invent
+- Use _profile.md as the base — you may supplement technologies beyond it if they are timeline-appropriate for that role's time period and domain (the developer is bidding on this role because they understand the stack)
+- NEVER claim a technology was used before it existed: LangChain 2023+, LangGraph 2024+, LangFuse 2024+, MCP 2025+
 - No symbols in bullet text: no —, <, >, +, →, ·
 - Do not overuse metric values
 - Every senior role must include: testing strategy, CI/CD, cloud services

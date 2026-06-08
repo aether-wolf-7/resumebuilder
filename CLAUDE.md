@@ -53,10 +53,27 @@ log.bat --company "{Company}" --position "{Position}" --url "{JD URL}" --notes "
 ## Hard rules — never break these
 
 - NEVER change years of experience — use exact value from `_profile.md` (currently 10+ years)
-- NEVER invent technologies or experience not in `_profile.md`
 - NEVER use symbols in bullet text: no —, <, >, +, →, ·
 - ALL jobs from `_profile.md` must appear in the resume
 - Cover letter must be exactly 7 sentences
+
+### Technology rules
+`_profile.md` is the base, not the ceiling. You may supplement technologies beyond what is listed there,
+provided they are timeline-appropriate for the period of that job role.
+
+**Allowed:** adding a technology that existed and was commonly used during the role's time period,
+and that fits the role's domain — even if not explicitly in `_profile.md`.
+
+**Not allowed:** claiming a technology was used before it was released or widely adopted.
+Follow the strict timelines defined in `resume_basic.md`:
+- LangChain: late 2022 / 2023+ only
+- LangGraph: 2024+ only
+- LangFuse: 2024+ only
+- MCP: 2025+ only
+- Hugging Face in production RAG: 2023+ only
+
+If the JD requires a stack the developer clearly understands (they are bidding on this role),
+it is appropriate to reflect that stack in the resume — as long as the timing is realistic.
 
 ---
 
