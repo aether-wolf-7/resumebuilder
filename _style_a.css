@@ -1,0 +1,177 @@
+/* ── Style A: Teal A3 — two-page comfortable reading ───────────────────── */
+
+@page {
+  size: A3 portrait;
+  margin: 12mm 14mm 12mm 14mm;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+  font-size: 9pt;
+  color: #1A1A1A;
+  line-height: 1.4;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+.cv-header {
+  background-color: #1A7A7A;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 6mm 12mm 6mm 12mm;
+  margin-bottom: 5mm;
+}
+
+.cv-name {
+  font-size: 28pt;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 2mm;
+  color: #FFFFFF;
+}
+
+.cv-subtitle {
+  font-size: 11pt;
+  font-weight: 400;
+  color: #DDEFEF;
+  margin-bottom: 2mm;
+  letter-spacing: 0.3px;
+}
+
+.cv-contact {
+  font-size: 10pt;
+  color: #C8DDDD;
+}
+
+/* ── Body ────────────────────────────────────────────────────────────────── */
+.cv-body {
+  padding: 0 2mm;
+}
+
+/* ── Section ─────────────────────────────────────────────────────────────── */
+.cv-section {
+  margin-bottom: 5mm;
+}
+
+.sec-title {
+  font-size: 10pt;
+  font-weight: 700;
+  color: #1A7A7A;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  border-bottom: 1pt solid #1A7A7A;
+  padding-bottom: 1.2mm;
+  margin-bottom: 3mm;
+}
+
+/* ── Summary ─────────────────────────────────────────────────────────────── */
+.summary-text {
+  font-size: 9.5pt;
+  color: #333333;
+  text-align: justify;
+  line-height: 1.55;
+}
+
+/* ── Skills Table — 4 columns (label | value | label | value) ────────────── */
+.sk-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sk-table tr {
+  vertical-align: middle;
+}
+
+.sk-table td {
+  border: 0.5pt solid #B8D4D4;
+  padding: 1.5mm 3mm;
+  vertical-align: middle;
+}
+
+.sk-label {
+  width: 13%;
+  color: #1A7A7A;
+  font-size: 9pt;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.sk-val {
+  width: 37%;
+  font-size: 9pt;
+  color: #333333;
+  line-height: 1.45;
+}
+
+/* ── Experience ──────────────────────────────────────────────────────────── */
+.job {
+  margin-bottom: 4mm;
+}
+
+.job-title {
+  display: block;
+  font-size: 10pt;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 0.8mm;
+}
+
+.job-meta {
+  font-size: 8.5pt;
+  color: #555555;
+  font-style: italic;
+  margin-bottom: 2mm;
+}
+
+.job-company {
+  color: #1A7A7A;
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* ── Projects ────────────────────────────────────────────────────────────── */
+.project {
+  margin-bottom: 3.5mm;
+}
+
+.proj-line {
+  font-size: 9.5pt;
+  margin-bottom: 1.5mm;
+}
+
+.proj-title {
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.proj-stack {
+  font-size: 8.5pt;
+  color: #1A7A7A;
+  font-style: italic;
+}
+
+/* ── Bullets ─────────────────────────────────────────────────────────────── */
+.blist {
+  margin: 0;
+  padding-left: 4mm;
+  list-style-type: disc;
+}
+
+.blist li {
+  font-size: 9pt;
+  color: #333333;
+  margin-bottom: 1mm;
+  line-height: 1.45;
+}
+
+/* ── Education ───────────────────────────────────────────────────────────── */
+.edu-text {
+  font-size: 9.5pt;
+  color: #333333;
+  line-height: 1.6;
+}

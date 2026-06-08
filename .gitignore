@@ -1,0 +1,28 @@
+# ── Sensitive — never commit ──────────────────────
+.env
+_profile.md
+
+# ── Generated output ──────────────────────────────
+*.pdf
+_test/
+
+# ── Python ────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# ── Node (chrome_extension dev deps) ─────────────
+node_modules/
+
+# ── Claude Code session data ──────────────────────
+.claude/
+
+# ── OS ───────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini

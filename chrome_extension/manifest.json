@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "CV Builder",
+  "version": "3.0",
+  "description": "Generate tailored resumes and log job applications. Requires server.bat running locally.",
+  "permissions": ["sidePanel"],
+  "host_permissions": [
+    "http://localhost:7842/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_title": "CV Builder"
+  }
+}

@@ -1,0 +1,76 @@
+/* ── Cover Letter: B5 single-page ──────────────────────────────────────── */
+
+@page {
+  size: B5 portrait;
+  margin: 14mm 18mm 14mm 18mm;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+  font-size: 10pt;
+  color: #1A1A1A;
+  line-height: 1.6;
+}
+
+/* ── Letterhead ──────────────────────────────────────────────────────────── */
+.cl-header {
+  padding-bottom: 4mm;
+  margin-bottom: 5mm;
+  border-bottom: 1.5pt solid #1A7A7A;
+}
+
+.cl-name {
+  font-size: 18pt;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 1.5mm;
+}
+
+.cl-contact {
+  font-size: 8.5pt;
+  color: #555555;
+}
+
+/* ── Position / company line ─────────────────────────────────────────────── */
+.cl-role {
+  font-size: 9pt;
+  color: #1A7A7A;
+  font-style: italic;
+  margin-bottom: 6mm;
+}
+
+/* ── Salutation ──────────────────────────────────────────────────────────── */
+.cl-salutation {
+  font-size: 10pt;
+  font-weight: 600;
+  margin-bottom: 4mm;
+}
+
+/* ── Body ────────────────────────────────────────────────────────────────── */
+.cl-para {
+  font-size: 10pt;
+  color: #1A1A1A;
+  line-height: 1.65;
+  text-align: justify;
+  margin-bottom: 4mm;
+}
+
+/* ── Closing ─────────────────────────────────────────────────────────────── */
+.cl-closing {
+  font-size: 10pt;
+  margin-top: 5mm;
+  margin-bottom: 6mm;
+}
+
+/* ── Signature ───────────────────────────────────────────────────────────── */
+.cl-signature {
+  font-size: 10pt;
+  color: #333333;
+  line-height: 1.7;
+}
