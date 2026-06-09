@@ -22,11 +22,11 @@ No templates to fill in. No formatting to fix.
 ### Way 1 — Claude Code (recommended for Claude users)
 
 You work directly in conversation with Claude.
-Claude reads all your reference files and writes the resume with full context.
+Claude reads all your reference files, writes the resume, generates PDFs, and logs — all automatically.
 Best for quality and fine-tuning.
 
 ```
-You → paste JD → Claude writes files → you run convert.bat → PDFs ready
+You → paste JD → Claude does everything → PDFs ready
 ```
 
 ### Way 2 — Chrome Extension
@@ -80,6 +80,10 @@ CV_BUILD_PATH=E:\YourName\CV_Build
 
 # Google Sheets webhook URL (created in the setup below)
 CV_SHEETS_WEBHOOK=https://script.google.com/macros/s/YOUR_ID/exec
+
+# Target sheet name within your Google Sheet (optional)
+# Leave blank to log to the first sheet, or set a name like Mexico_ed or Canada_de
+CV_SHEETS_NAME=
 ```
 
 > Never share your `.env` file. It contains your API keys.
@@ -134,6 +138,10 @@ This logs every application you submit — date, company, position, URL, status.
 |---|---|---|---|---|---|
 | Date | Company | Position | URL | Status | Notes |
 
+If you want to log to multiple named sheets (e.g. one per country or job market),
+create each sheet tab with the same headers. Then set `CV_SHEETS_NAME` in `.env`
+to the tab name you want to use.
+
 ### Step 2 — Create the webhook
 
 1. In the sheet: click **Extensions → Apps Script**
@@ -141,8 +149,13 @@ This logs every application you submit — date, company, position, URL, status.
 
 ```javascript
 function doPost(e) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  const data  = JSON.parse(e.postData.contents);
+  const data = JSON.parse(e.postData.contents);
+  const ss   = SpreadsheetApp.getActiveSpreadsheet();
+
+  // Use the sheet name from the request if provided, otherwise use the first sheet
+  const sheet = data.sheet
+    ? (ss.getSheetByName(data.sheet) || ss.getSheets()[0])
+    : ss.getSheets()[0];
 
   sheet.appendRow([
     data.date     || new Date().toLocaleDateString(),
@@ -175,14 +188,10 @@ function doPost(e) {
 ```
 1. Open Claude Code in CV_Doc\
 2. Paste the job description into chat
-3. Claude creates:
-     CV_Build\{Company}\{Position}\resume.md
-     CV_Build\{Company}\{Position}\cover_letter.md
-4. Run in terminal:
-     convert.bat "CV_Build\{Company}\{Position}\resume.md"
-     convert.bat "CV_Build\{Company}\{Position}\cover_letter.md"
-5. Run:
-     log.bat --company "..." --position "..." --url "https://..."
+3. Claude automatically:
+     - Writes resume.md and cover_letter.md
+     - Runs convert.bat to generate both PDFs
+     - Runs log.bat to log the application to Google Sheets
 ```
 
 Output files:
@@ -210,10 +219,10 @@ CV_Build\{Company}\{Position}\
 The sidebar shows when it's done:
 
 ```
-📁 E:\YourName\CV_Build\Lumenalta\AI_Engineer\
-✓ YourName_CV.pdf
-✓ YourName_CoverLetter.pdf
-✓ Logged to Google Sheets
+E:\YourName\CV_Build\Lumenalta\AI_Engineer\
+  YourName_CV.pdf
+  YourName_CoverLetter.pdf
+  Logged to Google Sheets
 ```
 
 ---
@@ -221,23 +230,25 @@ The sidebar shows when it's done:
 ## File structure
 
 ```
-CV_Doc\                          ← tool folder
-  .env                           ← your API keys and config (never share)
-  _profile.md                    ← your master career profile
-  resume_prompt.md               ← AI writing instructions
-  resume_basic.md                ← quality standards and timeline rules
-  _resume_format.md              ← exact structure the PDF converter expects
-  _style_a.css                   ← resume PDF style (teal, A3, 2 pages)
-  _style_coverletter.css         ← cover letter style (B5, 1 page)
-  GenerateResumePrompt.md        ← workflow prompt for Claude Code users
-  SetupProfilePrompt.md          ← first-time setup prompt for Claude Code users
-  convert.py / convert.bat       ← converts MD files to PDF
-  log.py / log.bat               ← logs application to Google Sheets
-  server.py / server.bat         ← local server for Chrome Extension
-  setup.py / setup.bat           ← first-time profile creator (non-Claude users)
-  chrome_extension\              ← Chrome sidebar extension
+CV_Doc\                          <- tool folder
+  .env                           <- your API keys and config (never share)
+  .claude\
+    settings.local.json          <- pre-approves convert.bat and log.bat for auto-run
+  _profile.md                    <- your master career profile
+  resume_prompt.md               <- AI writing instructions
+  resume_basic.md                <- quality standards and timeline rules
+  _resume_format.md              <- exact structure the PDF converter expects
+  _style_a.css                   <- resume PDF style (teal, A3, 2 pages)
+  _style_coverletter.css         <- cover letter style (B5, 1 page)
+  GenerateResumePrompt.md        <- workflow prompt for Claude Code users
+  SetupProfilePrompt.md          <- first-time setup prompt for Claude Code users
+  convert.py / convert.bat       <- converts MD files to PDF
+  log.py / log.bat               <- logs application to Google Sheets
+  server.py / server.bat         <- local server for Chrome Extension
+  setup.py / setup.bat           <- first-time profile creator (non-Claude users)
+  chrome_extension\              <- Chrome sidebar extension
 
-CV_Build\                        ← your generated resumes (auto-created)
+CV_Build\                        <- your generated resumes (auto-created)
   {Company}\
     {Position}\
       resume.md
@@ -280,9 +291,14 @@ convert.bat "resume.md" --config "C:\Users\You\my_cv_config"
 → Check `_profile.md` — all jobs must be listed there
 → If using the Chrome Extension, the model may have omitted older roles — switch to a stronger model in `.env`
 
+**Claude Code does not run convert.bat or log.bat automatically**
+→ Check that `.claude\settings.local.json` exists in `CV_Doc\` and contains entries for `Bash(convert.bat *)` and `Bash(log.bat *)` in the allow list
+→ If the file is missing, open it and add those two lines (see the File structure section above)
+
 **Google Sheets is not logging**
 → Check `CV_SHEETS_WEBHOOK` in `.env`
 → Make sure the Apps Script was deployed with **Execute as: Me** and **Access: Anyone**
+→ If using a named sheet, confirm the tab name in `CV_SHEETS_NAME` matches exactly (case-sensitive)
 
 **`setup.bat` fails with "API key not set"**
 → Make sure `OPENAI_API_KEY` or `ANTHROPIC_API_KEY` is filled in `.env`
