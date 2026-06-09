@@ -27,7 +27,7 @@ WEBHOOK_URL = os.environ.get(
 )
 
 
-def post_to_sheet(company: str, position: str, url: str, status: str, notes: str) -> bool:
+def post_to_sheet(company: str, position: str, url: str, status: str, notes: str, sheet: str = '') -> bool:
     payload = json.dumps({
         'date':     date.today().strftime('%Y-%m-%d'),
         'company':  company,
@@ -35,6 +35,7 @@ def post_to_sheet(company: str, position: str, url: str, status: str, notes: str
         'url':      url,
         'status':   status,
         'notes':    notes,
+        'sheet':    sheet,
     }).encode('utf-8')
 
     req = urllib.request.Request(
@@ -68,6 +69,7 @@ def main():
     parser.add_argument('--status',   default='Applied',
                         choices=['Applied', 'Interviewing', 'Offer', 'Rejected', 'Withdrawn'],
                         help='Application status (default: Applied)')
+    parser.add_argument('--sheet',    default='',     help='Target sheet name (e.g. Mexico_ed)')
     parser.add_argument('--notes',    default='',     help='Optional notes')
     args = parser.parse_args()
 
@@ -77,7 +79,8 @@ def main():
     print(f'  Status   : {args.status}')
     print(f'  URL      : {args.url}')
 
-    ok = post_to_sheet(args.company, args.position, args.url, args.status, args.notes)
+    sheet_name = args.sheet or os.environ.get('CV_SHEETS_NAME', '')
+    ok = post_to_sheet(args.company, args.position, args.url, args.status, args.notes, sheet_name)
 
     if ok:
         print('  Logged successfully.')

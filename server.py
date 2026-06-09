@@ -40,6 +40,7 @@ MODEL         = os.environ.get('CV_API_MODEL',       'gpt-4o-mini')
 OPENAI_KEY    = os.environ.get('OPENAI_API_KEY',    '')
 ANTHROPIC_KEY = os.environ.get('ANTHROPIC_API_KEY', '')
 WEBHOOK_URL   = os.environ.get('CV_SHEETS_WEBHOOK', '')
+SHEETS_NAME   = os.environ.get('CV_SHEETS_NAME',   '')
 
 
 # ── HELPERS ───────────────────────────────────────────────────────────────────
@@ -191,7 +192,7 @@ def save_and_convert(company, position, resume_md, cover_md):
 
 # ── SHEETS LOGGING ────────────────────────────────────────────────────────────
 
-def log_to_sheets(company, position, url, notes='via Chrome Extension'):
+def log_to_sheets(company, position, url, notes='via Chrome Extension', sheet=''):
     if not WEBHOOK_URL:
         return
     payload = json.dumps({
@@ -201,6 +202,7 @@ def log_to_sheets(company, position, url, notes='via Chrome Extension'):
         'url':      url,
         'status':   'Applied',
         'notes':    notes,
+        'sheet':    sheet or SHEETS_NAME,
     }).encode('utf-8')
     req = urllib.request.Request(
         WEBHOOK_URL, data=payload,
@@ -282,7 +284,7 @@ class Handler(BaseHTTPRequestHandler):
             folder, pdfs, errors = save_and_convert(company, position, resume_md, cover_md)
 
             if url:
-                log_to_sheets(company, position, url)
+                log_to_sheets(company, position, url, sheet=SHEETS_NAME)
 
             self._json(200, {'result': 'ok', 'company': company, 'position': position,
                              'folder': folder, 'pdfs': pdfs, 'errors': errors,
