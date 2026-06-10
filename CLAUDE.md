@@ -8,11 +8,10 @@ Run the full resume generation workflow immediately. No explanation needed unles
 
 ### Step 1 — Read all reference files first
 
-Before writing anything, read these 4 files:
+Before writing anything, read these 3 files:
 
 - `_profile.md` — developer's full background, work history, capabilities
-- `resume_prompt.md` — mandatory writing rules, cloud stack definitions
-- `resume_basic.md` — quality standards, timeline rules, stack progression
+- `resume_prompt.md` — mandatory writing rules, cloud stack definitions, timeline rules
 - `_resume_format.md` — exact markdown structure the PDF converter expects
 
 ### Step 2 — Analyze the JD
@@ -65,7 +64,7 @@ provided they are timeline-appropriate for the period of that job role.
 and that fits the role's domain — even if not explicitly in `_profile.md`.
 
 **Not allowed:** claiming a technology was used before it was released or widely adopted.
-Follow the strict timelines defined in `resume_basic.md`:
+Follow the strict timelines defined in `resume_prompt.md`:
 - LangChain: late 2022 / 2023+ only
 - LangGraph: 2024+ only
 - LangFuse: 2024+ only

@@ -26,7 +26,7 @@ target_position: [VARIABLE — position title]
 (max 4 tag groups separated by  ·  to fit one line)
 
 ## CONTACT
-Culiacán, Sinaloa, Mexico  |  +52 667 226 7968  |  wwworlddev@gmail.com  |  linkedin.com/in/ed-vi-araujo
+[City, Country from _profile.md]  |  [Phone from _profile.md]  |  [Email from _profile.md]  |  [LinkedIn from _profile.md]
 
 ---
 
@@ -138,7 +138,7 @@ Dear Hiring Manager,
 [Sentence 7 — call to action]
 
 Best regards,
-Eduardo Vidaca
-Phone: +52 667 226 7968
-Email: wwworlddev@gmail.com
-LinkedIn: https://www.linkedin.com/in/ed-vi-araujo
+[Full name from _profile.md]
+Phone: [Phone from _profile.md]
+Email: [Email from _profile.md]
+LinkedIn: [LinkedIn URL from _profile.md]

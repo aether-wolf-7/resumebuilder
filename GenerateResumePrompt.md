@@ -6,16 +6,15 @@ REFERENCE FILES (read all before writing anything)
 ==================================================
 
 1. _profile.md          — Eduardo's full background, work history, and capabilities
-2. resume_basic.md      — Quality standards, tech timeline rules, stack progression
-3. resume_prompt.md     — Mandatory rules, cloud stack definitions, output requirements
-4. _resume_format.md    — Exact .md structure the resume must follow
+2. resume_prompt.md     — Mandatory rules, cloud stack definitions, timeline rules, output requirements
+3. _resume_format.md    — Exact .md structure the resume must follow
 
 ==================================================
 WORKFLOW
 ==================================================
 
 1. Read the JD — identify: role level, required stack, cloud platform, key requirements
-2. Read the 4 reference files above
+2. Read the 3 reference files above
 3. Create folder:  E:\@@Eduardo\CV_Build\{Company}\{Position}\
 4. Write resume.md       — tailored to 95%+ JD match, following _resume_format.md exactly
 5. Write cover_letter.md — 7 sentences, following the format below
@@ -32,17 +31,17 @@ LOG TO GOOGLE SHEETS (run after PDFs are confirmed):
   log.bat --company "{Company}" --position "{Position}" --url "{JD URL}" --notes "via Claude Code"
 
 ==================================================
-RESUME RULES (brief — full rules in resume_prompt.md + resume_basic.md)
+RESUME RULES (brief — full rules in resume_prompt.md)
 ==================================================
 
 - NEVER change the years of experience — always use the exact value from _profile.md (currently 10+ years)
 - Every bullet: WHAT was built → HOW it was built → BUSINESS or SYSTEM IMPACT
 - Use _profile.md as the base — you may supplement technologies beyond it if they are timeline-appropriate for that role's time period and domain (the developer is bidding on this role because they understand the stack)
-- NEVER claim a technology was used before it existed: LangChain 2023+, LangGraph 2024+, LangFuse 2024+, MCP 2025+
+- NEVER claim a technology was used before it existed: LangChain 2023+, LangGraph 2024+, LangFuse 2024+, MCP 2025+, Agentic systems 2025+
 - No symbols in bullet text: no —, <, >, +, →, ·
 - Do not overuse metric values
 - Every senior role must include: testing strategy, CI/CD, cloud services
-- Strictly follow AI/LLM timeline rules (LangChain 2023+, LangGraph 2024+, LangFuse 2024+)
+- Senior roles from 2023+ should reflect AI/LLM awareness where realistic
 
 ==================================================
 COVER LETTER FORMAT (always exactly 7 sentences)
@@ -59,10 +58,10 @@ Dear Hiring Manager,
 [Sentence 7 — call to action]
 
 Best regards,
-Eduardo Vidaca
-Phone: +52 667 226 7968
-Email: wwworlddev@gmail.com
-LinkedIn: https://www.linkedin.com/in/ed-vi-araujo
+[Full name from _profile.md]
+Phone: [Phone from _profile.md]
+Email: [Email from _profile.md]
+LinkedIn: [LinkedIn URL from _profile.md]
 
 ==================================================
 JOB BID Q&A RULE
