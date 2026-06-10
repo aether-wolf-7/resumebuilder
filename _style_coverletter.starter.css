@@ -1,4 +1,5 @@
-/* ── Cover Letter: B5 single-page ──────────────────────────────────────── */
+/* ── Cover Letter: Navy B5 — generic starter, customize to match your brand  */
+/* Replace #1A4A7A with your own brand color throughout this file.            */
 
 @page {
   size: B5 portrait;
@@ -22,7 +23,7 @@ body {
 .cl-header {
   padding-bottom: 4mm;
   margin-bottom: 5mm;
-  border-bottom: 1.5pt solid #1A7A7A;
+  border-bottom: 1.5pt solid #1A4A7A;
 }
 
 .cl-name {
@@ -40,7 +41,7 @@ body {
 /* ── Position / company line ─────────────────────────────────────────────── */
 .cl-role {
   font-size: 9pt;
-  color: #1A7A7A;
+  color: #1A4A7A;
   font-style: italic;
   margin-bottom: 6mm;
 }

@@ -41,15 +41,15 @@ End with soft skills: remote-ready, English, cross-functional leadership.]
 | Label              | Content |
 |--------------------|---------|
 | Cloud Platforms    | [VARIABLE — list AWS/GCP/Azure services relevant to JD] |
-| AI / ML            | [FIXED] LangChain, LangGraph, LangFuse, RAG Pipelines, OpenAI API, Anthropic API, Hugging Face Transformers, Pinecone, Weaviate, PGVector |
+| AI / ML            | [FIXED — from _profile.md: AI/ML tools and frameworks] |
 | Backend            | [VARIABLE — languages + frameworks core to JD] |
-| Testing            | [FIXED+] xUnit, NUnit, Moq, MSTest, Jest, React Testing Library, Playwright, Cypress, pytest, Testcontainers, TDD[, add JD-specific tools] |
-| Frontend           | [FIXED+] React 18 / Next.js, TypeScript, HTML5 / CSS3, Tailwind CSS, Material UI[, add if JD requires] |
-| DevOps / CI·CD     | [FIXED+] Azure Pipelines, GitHub Actions, GitLab CI, Docker Compose, Terraform[, add JD-specific tools] |
-| Databases          | [FIXED+] MS SQL Server / Azure SQL, PostgreSQL, MongoDB, Redis, Elasticsearch, ClickHouse, PGVector[, add JD-specific DBs] |
-| Observability      | [FIXED+] CloudWatch, Grafana, Datadog[, add JD-specific tools] |
-| Agile / Tools      | [FIXED+] Jira, Confluence, GitHub, Trello[, add if needed] |
-| AI Tools           | [FIXED] Claude Code, GitHub Copilot, Cursor |
+| Testing            | [FIXED — from _profile.md: testing frameworks][, add JD-specific tools] |
+| Frontend           | [FIXED — from _profile.md: frontend stack][, add if JD requires] |
+| DevOps / CI·CD     | [FIXED — from _profile.md: CI/CD and DevOps tools][, add JD-specific tools] |
+| Databases          | [FIXED — from _profile.md: databases][, add JD-specific DBs] |
+| Observability      | [FIXED — from _profile.md: observability tools][, add JD-specific tools] |
+| Agile / Tools      | [FIXED — from _profile.md: agile and collaboration tools] |
+| AI Tools           | [FIXED — from _profile.md: AI coding tools] |
 
 (Add extra rows as needed for JD-specific categories, e.g. "Data Engineering", "BI / Visualization")
 
@@ -58,7 +58,7 @@ End with soft skills: remote-ready, English, cross-functional leadership.]
 ## PROFESSIONAL EXPERIENCE
 
 ### [VARIABLE — Job Title matching JD]
-**Data Squared USA Inc.**  ·  Wilmington, Delaware, USA (Remote)  ·  Contract Full-Time  ·  January 2025 – March 2026
+**[Company 1 from _profile.md]**  ·  [Location]  ·  [Employment Type]  ·  [Date range]
 - [VARIABLE — bullet 1, most relevant to JD]
 - [VARIABLE — bullet 2]
 - [VARIABLE — bullet 3]
@@ -66,31 +66,29 @@ End with soft skills: remote-ready, English, cross-functional leadership.]
 - [VARIABLE — bullet 5]
 
 ### [VARIABLE — Job Title]
-**IMNC**  ·  Mexico City, MX (Hybrid)  ·  Contract Full-Time  ·  September 2022 – December 2024
+**[Company 2 from _profile.md]**  ·  [Location]  ·  [Employment Type]  ·  [Date range]
 - [VARIABLE — bullet 1]
 - [VARIABLE — bullet 2]
 - [VARIABLE — bullet 3]
 - [VARIABLE — bullet 4]
-- [VARIABLE — bullet 5]
 
 ### [VARIABLE — Job Title]
-**Kiira Health**  ·  Los Angeles, CA, USA (Remote)  ·  Contract Full-Time  ·  July 2020 – August 2022
+**[Company 3 from _profile.md]**  ·  [Location]  ·  [Employment Type]  ·  [Date range]
 - [VARIABLE — bullet 1]
 - [VARIABLE — bullet 2]
 - [VARIABLE — bullet 3]
-- [VARIABLE — bullet 4]
-- [VARIABLE — bullet 5]
 
 ### [VARIABLE — Job Title]
-**HP Inc.**  ·  Palo Alto, CA, USA (Remote)  ·  Contract Full-Time  ·  August 2018 – June 2020
+**[Company 4 from _profile.md]**  ·  [Location]  ·  [Employment Type]  ·  [Date range]
 - [VARIABLE — bullet 1]
 - [VARIABLE — bullet 2]
 - [VARIABLE — bullet 3]
-- [VARIABLE — bullet 4]
 
-### Web Developer
-**A.J. Multimedia Solutions**  ·  Contract Part-Time  ·  August 2016 – June 2018
+### [VARIABLE — Job Title]
+**[Company 5 from _profile.md]**  ·  [Employment Type]  ·  [Date range]
 - [VARIABLE — 1–2 bullets, keep brief]
+
+(Include ALL jobs from _profile.md — never drop any position)
 
 ---
 
@@ -114,8 +112,8 @@ End with soft skills: remote-ready, English, cross-functional leadership.]
 ---
 
 ## EDUCATION
-**Bachelor of Science in Systems and Computing Engineering**
-King Mongkut's University of Technology Thonburi  ·  Bangkok, Thailand  ·  August 2013 – July 2017
+[Degree from _profile.md]
+[University from _profile.md]  ·  [Location]  ·  [Date range]
 
 ========================================================
 COVER LETTER FORMAT
@@ -129,7 +127,7 @@ type: cover_letter
 
 Dear Hiring Manager,
 
-[Sentence 1 — who Eduardo is + years of experience + top skill]
+[Sentence 1 — who the developer is + years of experience + top skill]
 [Sentence 2 — most relevant technical match to this JD]
 [Sentence 3 — second technical strength or achievement]
 [Sentence 4 — third strength or specific JD requirement met]

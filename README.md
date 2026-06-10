@@ -234,11 +234,13 @@ CV_Doc\                          <- tool folder
   .env                           <- your API keys and config (never share)
   .claude\
     settings.local.json          <- pre-approves convert.bat and log.bat for auto-run
-  _profile.md                    <- your master career profile (name, contact, work history)
+  _profile.md                    <- your master career profile (name, contact, work history) [gitignored]
   resume_prompt.md               <- AI writing rules, cloud stacks, timeline rules (2026 standards)
   _resume_format.md              <- exact structure the PDF converter expects
-  _style_a.css                   <- resume PDF style (teal, A3, 2 pages)
-  _style_coverletter.css         <- cover letter style (B5, 1 page)
+  _style_a.css                   <- your personal resume PDF style [gitignored — customize from starter]
+  _style_coverletter.css         <- your personal cover letter style [gitignored — customize from starter]
+  _style_a.starter.css           <- generic navy starter for _style_a.css
+  _style_coverletter.starter.css <- generic navy starter for _style_coverletter.css
   GenerateResumePrompt.md        <- workflow prompt for Claude Code users
   SetupProfilePrompt.md          <- first-time setup prompt for Claude Code users
   convert.py / convert.bat       <- converts MD files to PDF
@@ -269,6 +271,11 @@ Each developer needs their own `_profile.md` and `.env`. No other files contain 
 **Step 3** — Create your profile — this is the only file with your personal info:
 - Claude Code users → use `SetupProfilePrompt.md`
 - Everyone else → run `setup.bat your_resume.pdf --output your_config_folder`
+  This also copies the starter CSS files for you as `_style_a.css` and `_style_coverletter.css`
+
+**Step 4 (optional)** — Customize your CSS. The starter files use navy blue (`#1A4A7A`).
+Open `_style_a.css` and `_style_coverletter.css` and replace `#1A4A7A` with your brand color.
+Your CSS files are gitignored — no one else will see them.
 
 **Step 4** — If your config folder is separate from `CV_Doc`, pass `--config` when converting:
 

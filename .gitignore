@@ -2,6 +2,10 @@
 .env
 _profile.md
 
+# ── Personal CSS (brand/design) — use *.starter.css as your base ──────────
+_style_a.css
+_style_coverletter.css
+
 # ── Generated output ──────────────────────────────
 *.pdf
 _test/

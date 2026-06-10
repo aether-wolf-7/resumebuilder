@@ -300,13 +300,17 @@ def main():
     print('  Written: _profile.md')
 
     # Step 5: Copy shared template files from script directory
+    # CSS files: use personal version if present, otherwise fall back to *.starter.css
     for fname in ('_resume_format.md', 'resume_prompt.md',
                   '_style_a.css', '_style_coverletter.css'):
         src = script_dir / fname
+        if not src.exists() and fname.endswith('.css'):
+            src = script_dir / fname.replace('.css', '.starter.css')
         dst = output_dir / fname
         if src.exists():
+            label = f'{src.name} → {fname}' if src.name != fname else fname
             shutil.copy2(src, dst)
-            print(f'  Copied : {fname}')
+            print(f'  Copied : {label}')
         else:
             print(f'  WARNING: {fname} not found in {script_dir} — skipped.')
 
