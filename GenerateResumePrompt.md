@@ -15,13 +15,13 @@ WORKFLOW
 
 1. Read the JD — identify: role level, required stack, cloud platform, key requirements
 2. Read the 3 reference files above
-3. Create folder:  E:\@@Eduardo\CV_Build\{Company}\{Position}\
+3. Read CV_BUILD_PATH from .env in this folder. Create: {CV_BUILD_PATH}\{Company}\{Position}\
 4. Write resume.md       — tailored to 95%+ JD match, following _resume_format.md exactly
 5. Write cover_letter.md — 7 sentences, following the format below
 
-PDF CONVERSION (run after writing both files):
-  convert.bat "E:\@@Eduardo\CV_Build\{Company}\{Position}\resume.md"
-  convert.bat "E:\@@Eduardo\CV_Build\{Company}\{Position}\cover_letter.md"
+PDF CONVERSION (run after writing both files — use CV_BUILD_PATH from .env):
+  convert.bat "{CV_BUILD_PATH}\{Company}\{Position}\resume.md"
+  convert.bat "{CV_BUILD_PATH}\{Company}\{Position}\cover_letter.md"
 
 OUTPUT FILES (name is extracted automatically from _profile.md):
   {name}_CV.pdf           — A3, Style A teal

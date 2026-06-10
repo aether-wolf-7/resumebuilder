@@ -105,13 +105,10 @@ Produce the following sections:
    - Each role aligned to a clear cloud stack
    - Quantified impact (performance, cost, scale, reliability)
    - Clear ownership and leadership signals
+   - AI / ML bullets go HERE (inside job bullets) — not as a separate section
+     Include: RAG architecture, agentic orchestration, vector databases, LLM observability
 
-3. AI / ML EXPERIENCE (only if applicable)
-   - RAG pipelines
-   - LLM orchestration
-   - Observability and optimization
-
-4. TECHNICAL SKILLS
+3. TECHNICAL SKILLS
    Grouped exactly as:
    - Cloud Platforms
    - Backend

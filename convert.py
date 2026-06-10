@@ -30,7 +30,7 @@ except ImportError:
 def _get_developer_info(css_dir: Path) -> tuple:
     """Read _profile.md and return (full_name, contact_string)."""
     profile = css_dir / '_profile.md'
-    name    = 'Eduardo V. A.'
+    name    = 'Developer'
     contact = ''
     if profile.exists():
         text = profile.read_text(encoding='utf-8')
@@ -47,7 +47,7 @@ def _get_developer_info(css_dir: Path) -> tuple:
 
 
 def _name_to_filename(name: str) -> str:
-    """'Eduardo V. A.' → 'Eduardo_V_A'"""
+    """'Developer' → 'Eduardo_V_A'"""
     name = re.sub(r'\.', '', name)
     name = re.sub(r'\s+', '_', name.strip())
     name = re.sub(r'[^\w_]', '', name)
@@ -62,7 +62,7 @@ def parse_md(content: str) -> dict:
     data = {}
 
     m = re.search(r'^# (.+)$', content, re.MULTILINE)
-    data['name'] = m.group(1).strip() if m else 'Eduardo V. A.'
+    data['name'] = m.group(1).strip() if m else 'Developer'
 
     sections = {}
     current  = None

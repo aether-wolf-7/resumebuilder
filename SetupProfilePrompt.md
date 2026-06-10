@@ -82,13 +82,12 @@ IMPORTANT RULES:
 - Be as specific and detailed as possible in work history bullets
 
 ==================================================
-STEP 3 — CREATE GenerateResumePrompt.md
+STEP 3 — CONFIRM GenerateResumePrompt.md
 ==================================================
 
-After creating _profile.md, create GenerateResumePrompt.md in the same folder.
-Use the template from E:\@@Eduardo\CV_Doc\GenerateResumePrompt.md as the base,
-but replace Eduardo's personal info (name, phone, email, LinkedIn) with the
-new developer's info from their _profile.md.
+GenerateResumePrompt.md already exists in the CV_Doc folder and is ready to use.
+It reads all personal info (name, phone, email, LinkedIn) directly from _profile.md
+at generation time — no manual edits needed.
 
 ==================================================
 STEP 4 — CONFIRM

@@ -21,10 +21,7 @@ from dotenv import load_dotenv
 
 load_dotenv(Path(__file__).parent / '.env')
 
-WEBHOOK_URL = os.environ.get(
-    'CV_SHEETS_WEBHOOK',
-    'https://script.google.com/macros/s/AKfycbwhkw32x7mGFljIwY6qTuQWg90UKaYz8P3LhyuY_7PIlXIb3qzqtpOkf6Q4tloqes7e/exec'
-)
+WEBHOOK_URL = os.environ.get('CV_SHEETS_WEBHOOK', '')
 
 
 def post_to_sheet(company: str, position: str, url: str, status: str, notes: str, sheet: str = '') -> bool:

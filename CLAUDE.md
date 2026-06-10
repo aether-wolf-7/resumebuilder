@@ -20,9 +20,8 @@ Identify: role level, required stack, cloud platform, key requirements, company 
 
 ### Step 3 — Create the output folder
 
-```
-E:\@@Eduardo\CV_Build\{Company}\{Position}\
-```
+Read `CV_BUILD_PATH` from the `.env` file in this folder.
+Create: `{CV_BUILD_PATH}\{Company}\{Position}\`
 
 ### Step 4 — Write resume.md
 
@@ -34,11 +33,11 @@ Exactly 7 sentences. Follow the cover letter format in `GenerateResumePrompt.md`
 
 ### Step 6 — Generate PDFs
 
-Run these two commands:
+Run these two commands (use the CV_BUILD_PATH value read from `.env`):
 
 ```
-convert.bat "E:\@@Eduardo\CV_Build\{Company}\{Position}\resume.md"
-convert.bat "E:\@@Eduardo\CV_Build\{Company}\{Position}\cover_letter.md"
+convert.bat "{CV_BUILD_PATH}\{Company}\{Position}\resume.md"
+convert.bat "{CV_BUILD_PATH}\{Company}\{Position}\cover_letter.md"
 ```
 
 ### Step 7 — Log to Google Sheets
