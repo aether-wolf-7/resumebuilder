@@ -109,15 +109,9 @@ def call_api(provider, model, apikey, system_prompt, user_message):
 def build_prompt(jd: str):
     profile       = read_file('_profile.md')
     resume_prompt = read_file('resume_prompt.md')
-    resume_basic  = read_file('resume_basic.md')
     resume_format = read_file('_resume_format.md')
 
     system = f"""{resume_prompt}
-
-========================================================
-QUALITY STANDARDS (MUST FOLLOW)
-========================================================
-{resume_basic}
 
 ========================================================
 EXACT OUTPUT FORMAT
@@ -303,7 +297,7 @@ def main():
     print(f'  Save path : {DEFAULT_BASE}')
     print(f'  Sheets    : {"configured" if WEBHOOK_URL else "not configured"}')
     print()
-    for f in ['_profile.md', 'resume_prompt.md', 'resume_basic.md', '_resume_format.md']:
+    for f in ['_profile.md', 'resume_prompt.md', '_resume_format.md']:
         status = '✓' if (SCRIPT_DIR / f).exists() else '✗ MISSING'
         print(f'  {status}  {f}')
     print(f'\nPress Ctrl+C to stop.\n')
