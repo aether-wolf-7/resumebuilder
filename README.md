@@ -300,7 +300,8 @@ convert.bat "resume.md" --config "C:\Users\You\my_cv_config"
 → If using a named sheet, confirm the tab name in `CV_SHEETS_NAME` matches exactly (case-sensitive)
 
 **`setup.bat` fails with "API key not set"**
-→ Make sure `OPENAI_API_KEY` or `ANTHROPIC_API_KEY` is filled in `.env`
+→ `setup.bat` requires an Anthropic key — make sure `ANTHROPIC_API_KEY` is filled in `.env`
+→ OpenAI keys are not supported for setup
 
 ---
 
