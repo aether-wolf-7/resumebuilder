@@ -189,16 +189,15 @@ REFERENCE FILES (read all before writing anything)
 ==================================================
 
 1. _profile.md          — Developer's full background, work history, and capabilities
-2. resume_basic.md      — Quality standards, tech timeline rules, stack progression
-3. resume_prompt.md     — Mandatory rules, cloud stack definitions, output requirements
-4. _resume_format.md    — Exact .md structure the resume must follow
+2. resume_prompt.md     — Mandatory rules, cloud stack definitions, timeline rules, output requirements
+3. _resume_format.md    — Exact .md structure the resume must follow
 
 ==================================================
 WORKFLOW
 ==================================================
 
 1. Read the JD — identify: role level, required stack, cloud platform, key requirements
-2. Read the 4 reference files above
+2. Read the 3 reference files above
 3. Create folder:  CV_Build/{{Company}}/{{Position}}/
 4. Write resume.md       — tailored to 95%+ JD match, following _resume_format.md exactly
 5. Write cover_letter.md — 7 sentences, following the format below
@@ -301,7 +300,7 @@ def main():
     print('  Written: _profile.md')
 
     # Step 5: Copy shared template files from script directory
-    for fname in ('_resume_format.md', 'resume_basic.md', 'resume_prompt.md',
+    for fname in ('_resume_format.md', 'resume_prompt.md',
                   '_style_a.css', '_style_coverletter.css'):
         src = script_dir / fname
         dst = output_dir / fname

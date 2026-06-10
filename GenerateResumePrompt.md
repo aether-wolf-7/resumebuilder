@@ -5,7 +5,7 @@
 REFERENCE FILES (read all before writing anything)
 ==================================================
 
-1. _profile.md          — Eduardo's full background, work history, and capabilities
+1. _profile.md          — Developer's full background, work history, and capabilities
 2. resume_prompt.md     — Mandatory rules, cloud stack definitions, timeline rules, output requirements
 3. _resume_format.md    — Exact .md structure the resume must follow
 
@@ -49,7 +49,7 @@ COVER LETTER FORMAT (always exactly 7 sentences)
 
 Dear Hiring Manager,
 
-[Sentence 1 — who Eduardo is + years of experience + top matching skill]
+[Sentence 1 — who the developer is + years of experience + top matching skill]
 [Sentence 2 — most relevant technical match to this JD]
 [Sentence 3 — second technical strength or achievement]
 [Sentence 4 — third strength or specific JD requirement met]

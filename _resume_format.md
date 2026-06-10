@@ -18,7 +18,7 @@ target_company: [VARIABLE — company name]
 target_position: [VARIABLE — position title]
 ---
 
-# Eduardo V. A.
+# [Full name from _profile.md]
 
 ## SUBTITLE
 [VARIABLE — e.g.: Senior Backend Engineer  ·  Java / Spring Boot  ·  Kafka / RabbitMQ  ·  Azure]
