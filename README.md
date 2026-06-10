@@ -234,9 +234,8 @@ CV_Doc\                          <- tool folder
   .env                           <- your API keys and config (never share)
   .claude\
     settings.local.json          <- pre-approves convert.bat and log.bat for auto-run
-  _profile.md                    <- your master career profile
-  resume_prompt.md               <- AI writing instructions
-  resume_basic.md                <- quality standards and timeline rules
+  _profile.md                    <- your master career profile (name, contact, work history)
+  resume_prompt.md               <- AI writing rules, cloud stacks, timeline rules (2026 standards)
   _resume_format.md              <- exact structure the PDF converter expects
   _style_a.css                   <- resume PDF style (teal, A3, 2 pages)
   _style_coverletter.css         <- cover letter style (B5, 1 page)
@@ -261,13 +260,13 @@ CV_Build\                        <- your generated resumes (auto-created)
 
 ## For other developers
 
-Each developer needs their own `_profile.md` and `.env`.
+Each developer needs their own `_profile.md` and `.env`. No other files contain personal information — `GenerateResumePrompt.md` and `_resume_format.md` read your name, contact details, and work history directly from `_profile.md`.
 
 **Step 1** — Copy the `CV_Doc` folder to your machine
 
 **Step 2** — Fill in your `.env` (your own API key and paths)
 
-**Step 3** — Create your profile:
+**Step 3** — Create your profile — this is the only file with your personal info:
 - Claude Code users → use `SetupProfilePrompt.md`
 - Everyone else → run `setup.bat your_resume.pdf --output your_config_folder`
 
