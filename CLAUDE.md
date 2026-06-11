@@ -33,17 +33,20 @@ Exactly 7 sentences. Follow the cover letter format in `GenerateResumePrompt.md`
 
 ### Step 6 — Generate PDFs
 
-Run these two commands (use the CV_BUILD_PATH value read from `.env`):
+Run these two commands (use the CV_BUILD_PATH value read from `.env`).
+Use `python convert.py` directly — do NOT use `convert.bat` (causes quoting failures with spaces in paths):
 
 ```
-convert.bat "{CV_BUILD_PATH}\{Company}\{Position}\resume.md"
-convert.bat "{CV_BUILD_PATH}\{Company}\{Position}\cover_letter.md"
+python convert.py "{CV_BUILD_PATH}\{Company}\{Position}\resume.md"
+python convert.py "{CV_BUILD_PATH}\{Company}\{Position}\cover_letter.md"
 ```
 
 ### Step 7 — Log to Google Sheets
 
+Use `python log.py` directly — do NOT use `log.bat`:
+
 ```
-log.bat --company "{Company}" --position "{Position}" --url "{JD URL}" --notes "via Claude Code"
+python log.py --company "{Company}" --position "{Position}" --url "{JD URL}" --notes "via Claude Code"
 ```
 
 ---
