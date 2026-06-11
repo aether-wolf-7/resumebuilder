@@ -40,13 +40,14 @@ Run these two commands (use the CV_BUILD_PATH value read from `.env`).
 Use `python convert.py` directly — do NOT use `convert.bat` (causes quoting failures with spaces in paths):
 
 ```
-python convert.py "{CV_BUILD_PATH}\{Company}\{Position}\resume.md"
-python convert.py "{CV_BUILD_PATH}\{Company}\{Position}\cover_letter.md"
+python convert.py "{CV_BUILD_PATH}\{Company_underscored}\{Position_underscored}\resume.md"
+python convert.py "{CV_BUILD_PATH}\{Company_underscored}\{Position_underscored}\cover_letter.md"
 ```
 
 ### Step 7 — Log to Google Sheets
 
-Use `python log.py` directly — do NOT use `log.bat`:
+Use `python log.py` directly — do NOT use `log.bat`.
+`--url` is optional — omit it if the JD was pasted as text with no URL:
 
 ```
 python log.py --company "{Company}" --position "{Position}" --url "{JD URL}" --notes "via Claude Code"

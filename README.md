@@ -201,9 +201,9 @@ function doPost(e) {
    - Converts both to PDFs
    - Logs the application to Google Sheets
 
-Your output files appear here:
+Your output files appear here (spaces in names become underscores):
 ```
-CV_Build\{Company}\{Position}\
+CV_Build\{Company_Name}\{Position_Title}\
   resume.md
   cover_letter.md
   YourName_CV.pdf
@@ -283,8 +283,8 @@ CV_Doc\                           <- tool folder (this repo)
   chrome_extension\               <- Chrome sidebar extension
 
 CV_Build\                         <- your generated resumes (auto-created)
-  {Company}\
-    {Position}\
+  {Company_Name}\               <- spaces replaced with underscores
+    {Position_Title}\
       resume.md
       cover_letter.md
       YourName_CV.pdf
@@ -307,7 +307,7 @@ CV_Build\                         <- your generated resumes (auto-created)
 **Resume is missing some jobs**
 → Open `_profile.md` and make sure all your jobs are listed there — every job must be present for it to appear in the resume.
 
-**Claude Code does not run convert.bat or log.bat automatically**
+**Claude Code does not generate PDFs or log automatically**
 → Check that the file `.claude\settings.local.json` exists inside `CV_Doc\`.
 → If it is missing, create it with this content:
 ```json
@@ -315,7 +315,9 @@ CV_Build\                         <- your generated resumes (auto-created)
   "permissions": {
     "allow": [
       "Bash(convert.bat *)",
-      "Bash(log.bat *)"
+      "Bash(log.bat *)",
+      "Bash(python convert.py *)",
+      "Bash(python log.py *)"
     ]
   }
 }

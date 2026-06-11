@@ -19,16 +19,16 @@ WORKFLOW
 4. Write resume.md       — tailored to 95%+ JD match, following _resume_format.md exactly
 5. Write cover_letter.md — 7 sentences, following the format below
 
-PDF CONVERSION (run after writing both files — use CV_BUILD_PATH from .env):
-  convert.bat "{CV_BUILD_PATH}\{Company}\{Position}\resume.md"
-  convert.bat "{CV_BUILD_PATH}\{Company}\{Position}\cover_letter.md"
+PDF CONVERSION (use python directly — do NOT use convert.bat):
+  python convert.py "{CV_BUILD_PATH}\{Company_underscored}\{Position_underscored}\resume.md"
+  python convert.py "{CV_BUILD_PATH}\{Company_underscored}\{Position_underscored}\cover_letter.md"
 
 OUTPUT FILES (name is extracted automatically from _profile.md):
-  {name}_CV.pdf           — A3, Style A teal
-  {name}_CoverLetter.pdf  — B5, single page, readable
+  {name}_CV.pdf           — A3, Style A
+  {name}_CoverLetter.pdf  — B5, single page
 
-LOG TO GOOGLE SHEETS (run after PDFs are confirmed):
-  log.bat --company "{Company}" --position "{Position}" --url "{JD URL}" --notes "via Claude Code"
+LOG TO GOOGLE SHEETS (use python directly — --url is optional):
+  python log.py --company "{Company}" --position "{Position}" --url "{JD URL}" --notes "via Claude Code"
 
 ==================================================
 RESUME RULES (brief — full rules in resume_prompt.md)

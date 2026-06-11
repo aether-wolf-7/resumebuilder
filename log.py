@@ -59,10 +59,14 @@ def post_to_sheet(company: str, position: str, url: str, status: str, notes: str
 
 
 def main():
+    if not WEBHOOK_URL:
+        print('  Sheets not configured (CV_SHEETS_WEBHOOK not set) — skipping.')
+        return
+
     parser = argparse.ArgumentParser(description='Log a job application to Google Sheets')
     parser.add_argument('--company',  required=True,  help='Company name')
     parser.add_argument('--position', required=True,  help='Job position / title')
-    parser.add_argument('--url',      required=True,  help='Job posting URL')
+    parser.add_argument('--url',      default='',     help='Job posting URL (optional)')
     parser.add_argument('--status',   default='Applied',
                         choices=['Applied', 'Interviewing', 'Offer', 'Rejected', 'Withdrawn'],
                         help='Application status (default: Applied)')
@@ -74,7 +78,8 @@ def main():
     print(f'  Company  : {args.company}')
     print(f'  Position : {args.position}')
     print(f'  Status   : {args.status}')
-    print(f'  URL      : {args.url}')
+    if args.url:
+        print(f'  URL      : {args.url}')
 
     sheet_name = args.sheet or os.environ.get('CV_SHEETS_NAME', '')
     ok = post_to_sheet(args.company, args.position, args.url, args.status, args.notes, sheet_name)
