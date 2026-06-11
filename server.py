@@ -186,7 +186,7 @@ def save_and_convert(company, position, resume_md, cover_md):
 
 # ── SHEETS LOGGING ────────────────────────────────────────────────────────────
 
-def log_to_sheets(company, position, url, notes='via Chrome Extension', sheet=''):
+def log_to_sheets(company, position, url, notes='via Chrome Extension', sheet='', status='Applied'):
     if not WEBHOOK_URL:
         return
     payload = json.dumps({
@@ -194,7 +194,7 @@ def log_to_sheets(company, position, url, notes='via Chrome Extension', sheet=''
         'company':  company,
         'position': position,
         'url':      url,
-        'status':   'Applied',
+        'status':   status,
         'notes':    notes,
         'sheet':    sheet or SHEETS_NAME,
     }).encode('utf-8')
@@ -250,8 +250,29 @@ class Handler(BaseHTTPRequestHandler):
 
         if self.path == '/generate':
             self._generate(data)
+        elif self.path == '/log':
+            self._log(data)
         else:
             self._json(404, {'error': 'not found'})
+
+    def _log(self, data):
+        company  = data.get('company',  '').strip()
+        position = data.get('position', '').strip()
+        url      = data.get('url',      '').strip()
+        status   = data.get('status',   'Applied').strip()
+        notes    = data.get('notes',    '').strip()
+        sheet    = data.get('sheet',    '').strip()
+
+        if not company or not position:
+            self._json(400, {'error': 'company and position are required'}); return
+
+        if not WEBHOOK_URL:
+            self._json(400, {'error': 'CV_SHEETS_WEBHOOK not configured in .env'}); return
+
+        log_to_sheets(company, position, url,
+                      notes=notes or 'via Chrome Extension',
+                      sheet=sheet, status=status)
+        self._json(200, {'result': 'ok'})
 
     def _generate(self, data):
         jd  = data.get('jd',  '').strip()

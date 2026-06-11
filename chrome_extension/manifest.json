@@ -3,7 +3,7 @@
   "name": "CV Builder",
   "version": "3.0",
   "description": "Generate tailored resumes and log job applications. Requires server.bat running locally.",
-  "permissions": ["sidePanel"],
+  "permissions": ["sidePanel", "tabs"],
   "host_permissions": [
     "http://localhost:7842/*"
   ],

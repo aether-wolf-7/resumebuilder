@@ -198,16 +198,17 @@ WORKFLOW
 
 1. Read the JD — identify: role level, required stack, cloud platform, key requirements
 2. Read the 3 reference files above
-3. Create folder:  CV_Build/{{Company}}/{{Position}}/
+3. Read CV_BUILD_PATH from .env. Replace spaces with underscores in Company and Position names.
+   Create folder: {{CV_BUILD_PATH}}\\{{Company_underscored}}\\{{Position_underscored}}\\
 4. Write resume.md       — tailored to 95%+ JD match, following _resume_format.md exactly
-5. Write cover_letter.md — 7 sentences, following the format below
+5. Write cover_letter.md — 7 sentences, following the cover letter format in _resume_format.md
 
-PDF CONVERSION (run after writing both files):
-  convert.bat "CV_Build/{{Company}}/{{Position}}/resume.md" --config <this config folder>
-  convert.bat "CV_Build/{{Company}}/{{Position}}/cover_letter.md" --config <this config folder>
+PDF CONVERSION (use python directly — do NOT use convert.bat):
+  python convert.py "{{CV_BUILD_PATH}}\\{{Company_underscored}}\\{{Position_underscored}}\\resume.md"
+  python convert.py "{{CV_BUILD_PATH}}\\{{Company_underscored}}\\{{Position_underscored}}\\cover_letter.md"
 
 OUTPUT FILES (name extracted automatically from _profile.md):
-  {{name}}_CV.pdf           — A3, Style A teal
+  {{name}}_CV.pdf           — A3, Style A
   {{name}}_CoverLetter.pdf  — B5, single page
 
 ==================================================

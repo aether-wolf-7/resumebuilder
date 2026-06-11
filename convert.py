@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-convert.py — Eduardo resume/cover letter .md → styled PDF (offline via Playwright)
+convert.py — resume / cover letter .md → styled PDF (offline via Playwright)
 
 Usage:
   python convert.py <resume.md>              # Resume → {name}_CV.pdf  (style a)

@@ -1,5 +1,4 @@
-const WEBHOOK_URL =
-  'https://script.google.com/macros/s/AKfycbwhkw32x7mGFljIwY6qTuQWg90UKaYz8P3LhyuY_7PIlXIb3qzqtpOkf6Q4tloqes7e/exec';
+const SERVER_URL = 'http://localhost:7842';
 
 const $ = id => document.getElementById(id);
 
@@ -38,10 +37,11 @@ $('log-btn').addEventListener('click', async () => {
   $('log-btn').textContent = 'Logging…';
 
   try {
-    const resp = await fetch(WEBHOOK_URL, {
+    const resp = await fetch(`${SERVER_URL}/log`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ date: today(), company, position, url, status, notes }),
+      signal: AbortSignal.timeout(10000),
     });
 
     const data = await resp.json();
@@ -50,10 +50,13 @@ $('log-btn').addEventListener('click', async () => {
       showStatus('Logged successfully to Google Sheets.', false);
       $('log-btn').textContent = 'Done';
     } else {
-      throw new Error('Unexpected response');
+      throw new Error(data.error || 'Unexpected response');
     }
   } catch (err) {
-    showStatus('Failed to log. Check your connection.', true);
+    const msg = (err.name === 'TypeError' || err.message.includes('fetch') || err.name === 'TimeoutError')
+      ? 'Server offline — start server.bat first.'
+      : 'Failed: ' + err.message;
+    showStatus(msg, true);
     $('log-btn').disabled = false;
     $('log-btn').textContent = 'Log Application';
   }

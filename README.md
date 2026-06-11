@@ -1,23 +1,33 @@
 # CV Builder
 
-Generate tailored resumes and cover letters — as styled PDFs — in under a minute.
+**Apply to 10 jobs in 35 minutes.**
 
-Paste a job description. The tool reads your career profile, writes a resume matched to that job, and saves a PDF. No templates, no formatting work.
+Paste a job description. CV Builder reads your career profile, writes a resume tailored to that specific job, and saves a formatted PDF — automatically. Every application gets a fresh resume and cover letter written from scratch. No templates to fill in, no formatting to fix.
 
 ---
 
-## Before you start — pick your method
+## How it works
 
-There are two ways to use this tool. Pick one before you begin.
+1. You paste a job description
+2. The AI reads your career profile and the JD
+3. It writes a tailored `resume.md` and `cover_letter.md`
+4. Converts them to styled PDFs
+5. Logs the application to your Google Sheet
+
+---
+
+## Two ways to use it
+
+Pick one before you begin.
 
 | | Method 1 — Claude Code | Method 2 — Chrome Extension |
 |---|---|---|
 | **How you use it** | Chat with Claude, paste the JD | Click a button in your browser sidebar |
-| **Best for** | Quality, adjustments, fine-tuning | Speed, applying while browsing job boards |
-| **What you need** | Claude Code (free desktop app) | An OpenAI or Anthropic API key (paid) |
-| **API key required?** | No (Claude Code handles it) | Yes |
+| **Best for** | Quality, fine-tuning, parallel batches | Speed while browsing job boards |
+| **AI cost** | Included in your Claude plan | Pays per call (OpenAI or Anthropic API) |
+| **Requires server running?** | No | Yes — keep `server.bat` open |
 
-Not sure which to pick? Start with **Method 1** if you already use Claude. Use **Method 2** if you want a one-click button while browsing.
+Not sure which to pick? Start with **Method 1** if you already use Claude.
 
 ---
 
@@ -29,39 +39,36 @@ Complete these steps regardless of which method you chose.
 
 ### Step 1 — Check requirements
 
-Make sure you have:
-
 - **Windows 10 or 11**
-- **Python 3.12 or later** — download from [python.org](https://www.python.org/downloads/)
-  When installing, check the box that says **"Add Python to PATH"**
+- **Python 3.12 or later** — [python.org/downloads](https://www.python.org/downloads/)
+  During installation, check **"Add Python to PATH"**
 - **Google Chrome**
 
 ---
 
 ### Step 2 — Download this tool
 
-If you have Git:
 ```
 git clone https://github.com/aether-wolf-7/resumebuilder.git CV_Doc
 ```
 
-Or click **Code → Download ZIP** on GitHub, then extract it. You should now have a `CV_Doc` folder.
+Or click **Code → Download ZIP** on GitHub, then extract it. You now have a `CV_Doc` folder.
 
 ---
 
 ### Step 3 — Open a terminal in the CV_Doc folder
 
-**How to open a terminal on Windows:**
+**On Windows:**
 1. Press the **Windows key**, type `cmd`, press **Enter**
-2. Type `cd ` (with a space), then drag the `CV_Doc` folder into the window, then press **Enter**
+2. Type `cd ` (with a space), drag the `CV_Doc` folder into the window, press **Enter**
 
-Or: open the `CV_Doc` folder in File Explorer, click the address bar, type `cmd`, press **Enter**.
+Or: open `CV_Doc` in File Explorer → click the address bar → type `cmd` → press **Enter**.
 
 ---
 
 ### Step 4 — Install Python packages
 
-In the terminal, run these two commands one at a time:
+Run these two commands one at a time:
 
 ```
 pip install playwright anthropic openai python-dotenv pdfplumber python-docx
@@ -70,43 +77,36 @@ pip install playwright anthropic openai python-dotenv pdfplumber python-docx
 python -m playwright install chromium
 ```
 
-The first command installs the libraries. The second installs the browser used to generate PDFs. Both may take a minute.
+Each may take a minute to finish.
 
 ---
 
-### Step 5 — Create your configuration file
+### Step 5 — Create your `.env` file
 
-In the `CV_Doc` folder, find the file called `.env.example`. Make a copy of it and rename the copy to `.env`.
+Find `.env.example` in the `CV_Doc` folder. **Copy it and rename the copy to `.env`.**
 
-> On Windows, `.env` files may be hidden. If you cannot see file extensions, go to File Explorer → View → check **File name extensions**.
+> On Windows, file extensions may be hidden. Go to File Explorer → View → check **File name extensions**.
+> When saving from Notepad, use **Save as → All files → `.env`** to avoid creating `.env.txt`.
 
-Open `.env` in Notepad and fill in your values:
+Open `.env` and fill in your values:
 
 ```
-# ── Where your generated PDFs will be saved ──────────────────────────────
+# Where your PDFs will be saved (the folder is created automatically)
 CV_BUILD_PATH=C:\Users\YourName\CV_Build
 
-# ── API key (required for Method 2 and for setup.bat) ────────────────────
-# Get an Anthropic key at: console.anthropic.com
-# Get an OpenAI key at: platform.openai.com
+# API key — only needed for Method 2 and for setup.bat
+# Anthropic: console.anthropic.com  |  OpenAI: platform.openai.com
 ANTHROPIC_API_KEY=
 OPENAI_API_KEY=
 
-# ── Which AI to use for the Chrome Extension (Method 2 only) ─────────────
+# Which AI to use for the Chrome Extension (Method 2 only)
 CV_API_PROVIDER=openai
 CV_API_MODEL=gpt-4o-mini
 
-# ── Google Sheets logging (optional — set up later in this guide) ─────────
+# Google Sheets webhook (fill in after the Google Sheets setup below)
 CV_SHEETS_WEBHOOK=
 CV_SHEETS_NAME=
 ```
-
-**What to fill in:**
-
-- `CV_BUILD_PATH` — the folder where your PDFs will be saved. It will be created automatically.
-- API key — leave blank for now if using Method 1 only. Required for Method 2.
-- `CV_API_PROVIDER` / `CV_API_MODEL` — only matters for Method 2.
-- Sheets fields — leave blank for now, fill in after the Google Sheets setup below.
 
 > Never share your `.env` file. It contains your API keys.
 
@@ -114,42 +114,40 @@ CV_SHEETS_NAME=
 
 ### Step 6 — Create your profile
 
-Your profile (`_profile.md`) is the master file that holds your career history — jobs, skills, education, contact info. It is read every time a resume is generated. **You only create it once.**
+Your profile (`_profile.md`) holds your career history — jobs, skills, education, contact info. Every resume is generated from it. **You create it once.**
 
 **If you use Claude Code (Method 1):**
 
-1. Install Claude Code from [claude.ai/code](https://claude.ai/code) if you have not already
+1. Install Claude Code from [claude.ai/code](https://claude.ai/code) if you haven't already
 2. Open Claude Code and navigate to the `CV_Doc` folder
-3. Open `SetupProfilePrompt.md`, copy all its contents, and paste into the Claude Code chat
-4. Follow the instructions — Claude will ask about your career and create `_profile.md` for you
+3. Copy all the contents of `SetupProfilePrompt.md` and paste into the chat
+4. Follow the instructions — Claude will create `_profile.md` for you
 
 **If you do not use Claude Code (Method 2 or no Claude):**
 
-Make sure `ANTHROPIC_API_KEY` is filled in your `.env`, then run:
+Make sure `ANTHROPIC_API_KEY` is filled in `.env`, then run:
 
 ```
 setup.bat "C:\Users\YourName\Documents\MyResume.pdf" --output "C:\Users\YourName\CV_Doc"
 ```
 
-Replace the paths with your actual resume file location and your `CV_Doc` folder location.
+This reads your resume file, calls the Anthropic API, and creates `_profile.md` automatically. It also sets up your PDF style files.
 
-This reads your resume, calls the Anthropic API, and creates `_profile.md` automatically. It also sets up your CSS style files.
-
-> After creation, open `_profile.md` and check that your total years of experience and job dates look correct. Fix anything that is wrong before generating your first resume.
+> After creation, open `_profile.md` and verify your total years of experience and job dates. Fix anything that looks wrong — this file is the source of truth for every resume.
 
 ---
 
-### Step 7 — Google Sheets logging (optional)
+### Step 7 — Google Sheets setup (optional)
 
-Skip this if you do not want to track your applications. You can set it up later.
+Skip this for now if you want to get started quickly. You can set it up later.
 
-This creates a log sheet that records every application — date, company, position, URL, and status.
+This logs every application — date, company, position, URL, and status — to a Google Sheet you own.
 
 **Create the sheet:**
 
 1. Go to [sheets.google.com](https://sheets.google.com) and create a new spreadsheet
 2. Name it `Job Applications`
-3. In row 1, add these column headers:
+3. Add these headers in row 1:
 
 | A | B | C | D | E | F |
 |---|---|---|---|---|---|
@@ -162,8 +160,8 @@ This creates a log sheet that records every application — date, company, posit
 
 ```javascript
 function doPost(e) {
-  const data = JSON.parse(e.postData.contents);
-  const ss   = SpreadsheetApp.getActiveSpreadsheet();
+  const data  = JSON.parse(e.postData.contents);
+  const ss    = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = data.sheet
     ? (ss.getSheetByName(data.sheet) || ss.getSheets()[0])
     : ss.getSheets()[0];
@@ -181,36 +179,42 @@ function doPost(e) {
 }
 ```
 
-3. Click **Save** (disk icon), name the project `CV Builder Logger`
+3. Click **Save** (disk icon) and name the project `CV Builder Logger`
 4. Click **Deploy → New deployment**
-5. Click the gear icon next to "Type" → select **Web app**
+5. Click the gear icon → select **Web app**
 6. Set **Execute as: Me** and **Who has access: Anyone**
-7. Click **Deploy**, then **Authorize access** when prompted
-8. Copy the URL shown and paste it into `.env` as `CV_SHEETS_WEBHOOK`
+7. Click **Deploy**, then **Authorize access**
+8. Copy the URL and paste it into `.env` as `CV_SHEETS_WEBHOOK`
 
 ---
 
 ## Part 2 — Method 1: Claude Code
+
+No extra setup needed. Claude Code reads CLAUDE.md automatically and knows exactly what to do.
 
 ### Daily use
 
 1. Open Claude Code in the `CV_Doc` folder
 2. Paste the full job description into the chat
 3. Claude automatically:
+   - Reads your profile and the JD
    - Writes `resume.md` and `cover_letter.md`
-   - Converts both to PDFs
-   - Logs the application to Google Sheets
+   - Converts both to PDFs using `python convert.py`
+   - Logs the application to Google Sheets using `python log.py`
 
-Your output files appear here (spaces in names become underscores):
+Your output files (spaces in names become underscores):
 ```
-CV_Build\{Company_Name}\{Position_Title}\
-  resume.md
-  cover_letter.md
-  YourName_CV.pdf
-  YourName_CoverLetter.pdf
+CV_Build\
+  Company_Name\
+    Position_Title\
+      resume.md
+      cover_letter.md
+      YourName_CV.pdf
+      YourName_CoverLetter.pdf
 ```
 
-That is all. No other steps needed.
+**Applying to multiple jobs at once:**
+Paste each job description one at a time. Claude processes them sequentially. For parallel batches, open multiple Claude Code windows each with a different JD.
 
 ---
 
@@ -220,45 +224,57 @@ That is all. No other steps needed.
 
 **Load the extension into Chrome:**
 
-1. Open Chrome and go to `chrome://extensions`
-2. Enable **Developer mode** using the toggle in the top-right corner
+1. Open Chrome → go to `chrome://extensions`
+2. Enable **Developer mode** (toggle in the top-right corner)
 3. Click **Load unpacked**
 4. Select the `CV_Doc\chrome_extension` folder
 5. Pin the extension to your toolbar (click the puzzle piece icon → pin CV Builder)
 
 **Start the local server:**
 
-Double-click `server.bat` inside the `CV_Doc` folder. A terminal window will open — **keep it open** while you use the extension. The extension cannot work without it.
+Double-click `server.bat` inside `CV_Doc`. A terminal window opens — **keep it open** the entire time you use the extension. The extension cannot work without it.
 
-### Daily use
+### Daily use — Generate a resume
 
 1. Double-click `server.bat` (keep the window open)
 2. Open any job posting in Chrome
-3. Click the CV Builder icon in your toolbar
-4. Paste the job posting URL and the full job description
-5. Click **Generate Resume + Cover Letter**
+3. Click the **CV Builder icon** in your toolbar — a sidebar opens
+4. The job URL is already filled in from your current tab
+5. Paste the full job description into the text area
+6. Click **Generate Resume + Cover Letter**
 
-The sidebar will show when it is done:
+The sidebar shows when it is done:
 ```
-C:\Users\YourName\CV_Build\CompanyName\JobTitle\
+CV_Build\Company_Name\Position_Title\
   YourName_CV.pdf
   YourName_CoverLetter.pdf
   Logged to Google Sheets
 ```
 
+### Daily use — Log an application (without generating)
+
+If you applied somewhere and just want to track it without generating a new resume:
+
+1. Make sure `server.bat` is running
+2. Open the job posting in Chrome
+3. Click the CV Builder icon → click the **CV Builder Logger** popup
+4. The URL is pre-filled from your current tab
+5. Fill in Company, Position, and Status
+6. Click **Log Application**
+
 ---
 
 ## Customize your PDF style (optional)
 
-The starter files use a navy blue color scheme. To use your own color:
+The starter files use a navy blue color scheme (`#1A4A7A`). To use your own color:
 
 1. Open `_style_a.css` in any text editor
 2. Replace every instance of `#1A4A7A` with your preferred hex color
 3. Do the same in `_style_coverletter.css`
 
-These files are personal — they are not shared with anyone.
+These files are personal — they are not uploaded to git.
 
-If `_style_a.css` does not exist yet (you have not run `setup.bat`), copy `_style_a.starter.css` and rename the copy to `_style_a.css`.
+If `_style_a.css` does not exist yet, copy `_style_a.starter.css` and rename the copy to `_style_a.css`.
 
 ---
 
@@ -267,15 +283,18 @@ If `_style_a.css` does not exist yet (you have not run `setup.bat`), copy `_styl
 ```
 CV_Doc\                           <- tool folder (this repo)
   .env                            <- your keys and config [never share]
-  _profile.md                     <- your career profile [personal, gitignored]
+  .claude\
+    settings.local.json           <- pre-approves python commands for auto-run
+  _profile.md                     <- your career profile [personal, not in git]
   resume_prompt.md                <- AI writing rules
   _resume_format.md               <- resume structure template
-  _style_a.css                    <- your resume PDF style [personal, gitignored]
-  _style_coverletter.css          <- your cover letter style [personal, gitignored]
+  _style_a.css                    <- your resume PDF style [personal, not in git]
+  _style_coverletter.css          <- your cover letter style [personal, not in git]
   _style_a.starter.css            <- generic navy starter (copy → _style_a.css)
   _style_coverletter.starter.css  <- generic navy starter (copy → _style_coverletter.css)
-  GenerateResumePrompt.md         <- Claude Code workflow instructions
-  SetupProfilePrompt.md           <- profile creation prompt for Claude Code
+  CLAUDE.md                       <- Claude Code workflow instructions (auto-read)
+  GenerateResumePrompt.md         <- workflow prompt for non-Claude Code users
+  SetupProfilePrompt.md           <- profile creation prompt for Claude Code users
   convert.py / convert.bat        <- converts .md files to PDF
   log.py / log.bat                <- logs to Google Sheets
   server.py / server.bat          <- local server for the Chrome Extension
@@ -283,8 +302,8 @@ CV_Doc\                           <- tool folder (this repo)
   chrome_extension\               <- Chrome sidebar extension
 
 CV_Build\                         <- your generated resumes (auto-created)
-  {Company_Name}\               <- spaces replaced with underscores
-    {Position_Title}\
+  Company_Name\                   <- spaces replaced with underscores
+    Position_Title\
       resume.md
       cover_letter.md
       YourName_CV.pdf
@@ -296,20 +315,19 @@ CV_Build\                         <- your generated resumes (auto-created)
 ## Troubleshooting
 
 **`pip` is not recognized**
-→ Python was not added to PATH during installation. Reinstall Python and check the "Add Python to PATH" box.
+→ Python was not added to PATH. Reinstall Python and check **"Add Python to PATH"** during installation.
 
-**`convert.bat` produces a blank or missing PDF**
+**PDFs are blank or missing**
 → Run `python -m playwright install chromium` again in the terminal.
 
 **Chrome Extension shows "Server offline"**
-→ Start `server.bat` first and keep that window open the whole time.
+→ Start `server.bat` and keep that window open. The extension requires the server to be running.
 
 **Resume is missing some jobs**
-→ Open `_profile.md` and make sure all your jobs are listed there — every job must be present for it to appear in the resume.
+→ Open `_profile.md` — every job must be listed there. The AI can only include what it reads from your profile.
 
 **Claude Code does not generate PDFs or log automatically**
-→ Check that the file `.claude\settings.local.json` exists inside `CV_Doc\`.
-→ If it is missing, create it with this content:
+→ Check that `.claude\settings.local.json` exists in `CV_Doc\`. If it is missing, create it with:
 ```json
 {
   "permissions": {
@@ -324,14 +342,14 @@ CV_Build\                         <- your generated resumes (auto-created)
 ```
 
 **Google Sheets is not logging**
-→ Check that `CV_SHEETS_WEBHOOK` in `.env` is filled in and not empty.
-→ Make sure the Apps Script was deployed with **Execute as: Me** and **Who has access: Anyone**.
-→ If you use a named sheet tab, confirm `CV_SHEETS_NAME` matches the tab name exactly (it is case-sensitive).
+→ Check `CV_SHEETS_WEBHOOK` in `.env` is filled in.
+→ The Apps Script must be deployed with **Execute as: Me** and **Who has access: Anyone**.
+→ If using a named sheet tab, `CV_SHEETS_NAME` must match the tab name exactly (case-sensitive).
 
 **`setup.bat` fails with "API key not set"**
-→ `setup.bat` requires an Anthropic API key. Fill in `ANTHROPIC_API_KEY` in `.env`.
+→ `setup.bat` requires an Anthropic key — fill in `ANTHROPIC_API_KEY` in `.env`.
 → OpenAI keys cannot be used for profile setup.
 
-**`.env` file is not saving / not being read**
-→ Make sure the file is named exactly `.env` (not `.env.txt` or `env.txt`).
-→ In Notepad, use **Save as → All files → `.env`** to avoid adding `.txt`.
+**`.env` file is not being read**
+→ Make sure the file is named exactly `.env` (not `.env.txt`).
+→ In Notepad: **File → Save as → Save as type: All files → filename: `.env`**

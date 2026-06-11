@@ -32,7 +32,7 @@ Follow `_resume_format.md` exactly. Tailor to 95%+ JD match.
 
 ### Step 5 — Write cover_letter.md
 
-Exactly 7 sentences. Follow the cover letter format in `GenerateResumePrompt.md`.
+Exactly 7 sentences. Follow the cover letter format in `_resume_format.md` (already read in Step 1).
 
 ### Step 6 — Generate PDFs
 
