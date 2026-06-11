@@ -77,7 +77,6 @@ AI bullets must describe:
 MANDATORY RULES (DO NOT VIOLATE)
 ==================================================
 
-- Do NOT invent technologies or tools I did not mention.
 - Do NOT mix unrelated stacks without a migration story.
 - Do Not use too much Metric Value.
 - Every senior role MUST include:
