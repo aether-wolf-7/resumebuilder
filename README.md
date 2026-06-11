@@ -1,7 +1,5 @@
 # CV Builder
 
-**Apply to 10 jobs in 35 minutes.**
-
 Paste a job description. CV Builder reads your career profile, writes a resume tailored to that specific job, and saves a formatted PDF — automatically. Every application gets a fresh resume and cover letter written from scratch. No templates to fill in, no formatting to fix.
 
 ---
