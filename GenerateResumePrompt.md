@@ -15,7 +15,7 @@ WORKFLOW
 
 1. Read the JD — identify: role level, required stack, cloud platform, key requirements
 2. Read the 3 reference files above
-3. Read CV_BUILD_PATH from .env in this folder. Create: {CV_BUILD_PATH}\{Company}\{Position}\
+3. Read CV_BUILD_PATH from .env in this folder. Replace spaces with underscores in Company and Position names. Create: {CV_BUILD_PATH}\{Company_with_underscores}\{Position_with_underscores}\
 4. Write resume.md       — tailored to 95%+ JD match, following _resume_format.md exactly
 5. Write cover_letter.md — 7 sentences, following the format below
 

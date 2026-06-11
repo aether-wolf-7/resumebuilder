@@ -21,7 +21,10 @@ Identify: role level, required stack, cloud platform, key requirements, company 
 ### Step 3 — Create the output folder
 
 Read `CV_BUILD_PATH` from the `.env` file in this folder.
-Create: `{CV_BUILD_PATH}\{Company}\{Position}\`
+Replace spaces with underscores in both Company and Position names.
+Create: `{CV_BUILD_PATH}\{Company_with_underscores}\{Position_with_underscores}\`
+
+Example: "Acme Corp" + "Senior Engineer" → `CV_Build\Acme_Corp\Senior_Engineer\`
 
 ### Step 4 — Write resume.md
 
